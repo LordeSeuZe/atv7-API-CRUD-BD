@@ -1,14 +1,18 @@
-const express = require('express')
+const express = require('express');
+const usuRoutes = require('./routes/usuarios.js');
 
 const porta = 3000;
 const app = express();
 
-app.use(express.json());
+require("./db/db.js");
 
-app.get('/', (req, res) =>{
-    res.send('API on!')
+app.use(express.json());
+app.use("/usuarios", usuRoutes);
+
+app.get('/', (req, res) => {
+    res.send('API on!');
 });
 
-app.listen(porta, ()=>{
+app.listen(porta, () => {
     console.log(`Servidor rodando na porta ${porta}`);
-})
+});
